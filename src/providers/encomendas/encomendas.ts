@@ -1,21 +1,28 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { map } from 'rxjs/operators';
 
 
 @Injectable()
-export class CadastroProvider {
-  private PATH = 'pedidos/';
-  constructor(private db: AngularFireDatabase) {}
+export class EncomendasProvider {
+
+ public PATH = 'encomendas/' 
+
+  constructor(private db: AngularFireDatabase) {
+    
+  }
+
 
   getAll() {
-    return this.db.list(this.PATH, ref => ref.orderByChild('pratos'))
+    return this.db.list(this.PATH)
       .snapshotChanges().pipe(
       map(changes => {
         return changes.map(m => ({ key: m.payload.key, ...m.payload.val() }));
       })
       )
   }
+
 
   getByKey(key: string) {
     const path = this.PATH + key;
@@ -35,17 +42,11 @@ export class CadastroProvider {
       );
   }
 
-  save(pedidosData: any){
-    const pedidos = {
-      pratos: pedidosData.name,
-    }
-    this.db.list(this.PATH).push(pedidos)
-
-  }
 
 
-  remove(Key: string) {
-    this.db.list(this.PATH).remove(Key);
+  remove(key: string, filePath: string) {
+    this.db.object(this.PATH + key).update({ imgUrl: '' });
+    this.db.list(this.PATH).remove(key);
     
   }
 

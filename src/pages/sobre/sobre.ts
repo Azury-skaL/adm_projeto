@@ -1,12 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { EncomendasProvider } from '../../providers/encomendas/encomendas';
+import { ToastProvider } from '../../providers/toast/toast';
 
-/**
- * Generated class for the SobrePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+
 
 @IonicPage()
 @Component({
@@ -15,11 +12,20 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class SobrePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+  encomenda: any;
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SobrePage');
-  }
 
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              private encomendas: EncomendasProvider,
+              private toast: ToastProvider,) {
+
+                this.encomenda = this.encomendas.getAll();
+              }
+              
+              
+              removeItemProdutos(Key: string, prato: any, quarto: any) {
+                this.encomenda.remove(Key, prato.data, quarto.data);
+                this.toast.show('Produto removido com sucesso.');
+              }
 }

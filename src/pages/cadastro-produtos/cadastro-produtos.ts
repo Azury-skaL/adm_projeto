@@ -17,7 +17,7 @@ export class CadastroProdutosPage {
 
   form: FormGroup;
   pedidos: any;
-  prato: string;
+  pratos: string;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -25,29 +25,30 @@ export class CadastroProdutosPage {
               private toast: ToastProvider,
               private formBuilder: FormBuilder
               ) {
-                this.prato= this.navParams.data.pratos;
-                this.cadastroProvider.getAll();
-                this.createForm();
+                this.pedidos = this.cadastroProvider.getAll();
+                // this.createForm();
               }
 
-  private createForm(){
-    this.form = this.formBuilder.group({
-      key:[''],
-      prato:[this.prato]
-    });
+  // private createForm(){
+  //   this.form = this.formBuilder.group({
+  //     key:[''],
+  //     prato:[this.prato]
+  //   });
 
+  // }
+
+  newItemProdutos() {
+    this.navCtrl.push('AddprodutosPage');
   }
 
-  cadastrarPedido(){
-    if (this.form.valid) {
-      this.cadastroProvider.save(this.form.value);
-      this.toast.show('Pedido cadastrado no banco de dados.');
-      //this.toast.create({ message: 'Seu pedido já está a caminho.', duration: 3000}).present();
-      this.navCtrl.pop();
+
+  removeItemProdutos(Key: string) {
+    this.cadastroProvider.remove(Key);
+    this.toast.show('Produto removido com sucesso.');
   }
 
 }
 
 
-}
+
 

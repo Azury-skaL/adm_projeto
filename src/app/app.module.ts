@@ -20,6 +20,7 @@ import { CadastroProvider } from '../providers/cadastro/cadastro';
 import { ToastProvider } from '../providers/toast/toast';
 
 import { firebaseConfig } from '../../config-firebase';
+import { EncomendasProvider } from '../providers/encomendas/encomendas';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { firebaseConfig } from '../../config-firebase';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     CadastroProvider,
-    ToastProvider
+    ToastProvider,
+    EncomendasProvider
   ]
 })
 export class AppModule {}

@@ -1,25 +1,28 @@
 
 <ion-header>
   <ion-navbar color="dark">
-    <ion-title>sobre</ion-title>
+    <ion-title>Pedidos</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding style="background-color:grey">
 
-  <ion-list class="nigger">
-    <ion-item color="black">
-      <h2>Versão</h2>
-      <p>1.0.0</p>
-    </ion-item>
-    <ion-item>
-      <h2>Desenvolvido por</h2>
-      <p>Rafael Felipe Zambeli</p>
-    </ion-item>
-    <ion-item>
-      <h2>Desenvolvido com</h2>
-      <p>Ionic</p>
-    </ion-item>
+  <ion-list color="dark">
+    
+    <ion-list class="nigger">
+      <ion-item-sliding *ngFor="let encomendas of encomenda | async">
+        <ion-item>
+          <h3>Prato:  {{ encomendas.prato }}</h3>
+        </ion-item>
+        <ion-item>
+          <h3>quarto:  {{ encomendas.quarto }}</h3>
+        </ion-item>
+        <ion-item-options side="right">
+          <button ion-button color="danger" (click)="removeItemProdutos()"><ion-icon name="trash"></ion-icon>Excluir</button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+
   </ion-list>
 
 </ion-content>

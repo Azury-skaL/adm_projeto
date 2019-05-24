@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar color="dark">
-    <ion-title>Pedidos</ion-title>
+    <ion-title>Cadastro de Pratos</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -11,10 +11,15 @@
       <ion-item>
         <h3>{{ pedido.pratos }}</h3>
       </ion-item>
-      <ion-item-options side="left">
-        <button ion-button color="secondary" (click)="cadastrarPedido(pedido)"><ion-icon name="create"></ion-icon>Pedir</button>
+      <ion-item-options side="right">
+        <button ion-button color="danger" (click)="removeItemProdutos(pedido.key)"><ion-icon name="trash"></ion-icon>Excluir</button>
       </ion-item-options>
     </ion-item-sliding>
+    
   </ion-list>
+
+  <ion-fab right bottom>
+    <button ion-fab color="dark" (click)="newItemProdutos()"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
 
 </ion-content>

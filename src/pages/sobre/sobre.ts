@@ -17,15 +17,16 @@ export class SobrePage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              private encomendas: EncomendasProvider,
-              private toast: ToastProvider,) {
+              private encomendasProvider: EncomendasProvider,
+              private toast: ToastProvider,) 
+              {
+                this.encomenda = this.encomendasProvider.getAll();
+              }
+              
+              
+    removeItemProdutos(Key: string) {
+           this.encomendasProvider.remove(Key);
+            this.toast.show('Encomenda removida com sucesso.');
+          }
 
-                this.encomenda = this.encomendas.getAll();
-              }
-              
-              
-              removeItemProdutos(Key: string, prato: any, quarto: any) {
-                this.encomenda.remove(Key, prato.data, quarto.data);
-                this.toast.show('Produto removido com sucesso.');
-              }
 }

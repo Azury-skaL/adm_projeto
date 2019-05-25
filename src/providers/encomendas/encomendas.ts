@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { map } from 'rxjs/operators';
@@ -6,12 +5,8 @@ import { map } from 'rxjs/operators';
 
 @Injectable()
 export class EncomendasProvider {
-
  public PATH = 'encomendas/' 
-
-  constructor(private db: AngularFireDatabase) {
-    
-  }
+  constructor(private db: AngularFireDatabase) {}
 
 
   getAll() {
@@ -22,7 +17,6 @@ export class EncomendasProvider {
       })
       )
   }
-
 
   getByKey(key: string) {
     const path = this.PATH + key;
@@ -44,9 +38,8 @@ export class EncomendasProvider {
 
 
 
-  remove(key: string, filePath: string) {
-    this.db.object(this.PATH + key).update({ imgUrl: '' });
-    this.db.list(this.PATH).remove(key);
+  remove(Key: string) {
+    this.db.list(this.PATH).remove(Key);
     
   }
 

@@ -8,6 +8,7 @@ export class CadastroProvider {
   private PATH = 'pedidos/';
   constructor(private db: AngularFireDatabase) {}
 
+  
   getAll() {
     return this.db.list(this.PATH, ref => ref.orderByChild('pratos'))
       .snapshotChanges().pipe(

@@ -18,7 +18,7 @@
           <h3>quarto:  {{ encomendas.quarto }}</h3>
         </ion-item>
         <ion-item-options side="right">
-          <button ion-button color="danger" (click)="removeItemProdutos()"><ion-icon name="trash"></ion-icon>Excluir</button>
+          <button ion-button color="danger" (click)="removeItemProdutos(encomendas.key)"><ion-icon name="trash"></ion-icon>Excluir</button>
         </ion-item-options>
       </ion-item-sliding>
     </ion-list>
